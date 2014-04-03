@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.metrafonic.jsonvisualizer.android.JSONActivity"
+            android:label="@string/title_activity_json" >
+        </activity>
     </application>
 
 </manifest>

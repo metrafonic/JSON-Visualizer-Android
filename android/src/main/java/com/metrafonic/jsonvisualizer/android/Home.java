@@ -1,9 +1,16 @@
 package com.metrafonic.jsonvisualizer.android;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONArray;
 
 
 public class Home extends ActionBarActivity {
@@ -12,6 +19,19 @@ public class Home extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Button visualizeButton = (Button) findViewById(R.id.button);
+        final EditText inputEditText = (EditText) findViewById(R.id.editText);
+
+        visualizeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home.this, JSONActivity.class);
+                Bundle b = new Bundle();
+                b.putString("jsonstring", inputEditText.getText().toString()); //Your id
+                intent.putExtras(b); //Put your id to your next Intent
+                startActivity(intent);
+            }
+        });
     }
 
 
