@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.metrafonic.jsonvisualizer.android.JSONActivity"
+            android:name=".ActivityJSON"
             android:label="@string/title_activity_json" >
         </activity>
     </application>

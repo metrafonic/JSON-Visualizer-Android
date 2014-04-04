@@ -8,12 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import org.json.JSONArray;
 
 
-public class Home extends ActionBarActivity {
+public class Home extends ActionBarActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +22,7 @@ public class Home extends ActionBarActivity {
         visualizeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, JSONActivity.class);
+                Intent intent = new Intent(Home.this, ActivityJSON.class);
                 Bundle b = new Bundle();
                 b.putString("jsonstring", inputEditText.getText().toString()); //Your id
                 intent.putExtras(b); //Put your id to your next Intent
