@@ -120,7 +120,6 @@ public class FragmentJSONObject extends Fragment {
                                 });
                             } else {
                                 // It's something else, like a string or number
-                                //TODO: Sort between string and int
 
                                 value = value.toString();
 

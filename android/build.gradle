@@ -15,9 +15,19 @@ android {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+        beta {
+            packageNameSuffix ".beta"
+            versionNameSuffix "-beta" + "-build" + getDate()
+            //signingConfig signingConfigs.debug
+        }
+
     }
 }
-
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmmss')
+    return formattedDate
+}
 dependencies {
     compile 'com.android.support:gridlayout-v7:19.0.1'
     compile 'com.android.support:support-v4:19.0.1'
