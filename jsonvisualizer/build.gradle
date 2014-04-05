@@ -25,7 +25,7 @@ android {
         }
         applicationVariants.all { variant ->
             def file = variant.outputFile
-            variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))
+            variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionName+ System.getenv("TEST") + ".apk"))
         }
 
     }
