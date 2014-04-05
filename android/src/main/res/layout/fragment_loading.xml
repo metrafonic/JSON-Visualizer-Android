@@ -1,7 +1,8 @@
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#2e517b">
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"

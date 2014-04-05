@@ -17,8 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityJSON"
-            android:label="@string/title_activity_json" >
+            android:name=".ActivityJSON" >
         </activity>
     </application>
 

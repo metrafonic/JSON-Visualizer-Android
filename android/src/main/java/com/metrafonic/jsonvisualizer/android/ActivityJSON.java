@@ -1,5 +1,6 @@
 package com.metrafonic.jsonvisualizer.android;
 
+import android.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -21,7 +22,7 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
             setContentView(R.layout.activity_json);
             Bundle b = getIntent().getExtras();
             String jsonString = b.getString("jsonstring");
-            replaceFragment(jsonString, "jsonstring");
+            replaceFragment(jsonString, "jsonObject", false);
             /*
             FragmentJSONObject newFragment = new FragmentJSONObject();
             Bundle args = new Bundle();
@@ -62,8 +63,9 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
         Toast.makeText(this, JSONArray.toString(), Toast.LENGTH_SHORT).show();
     }
     @Override
-    public void onObjectClicked(JSONObject JSONObject){
-        replaceFragment(JSONObject.toString(), "jsonstring");
+    public void onObjectClicked(JSONObject TheJSONObject){
+        //Toast.makeText(this, TheJSONObject.toString(), Toast.LENGTH_SHORT).show();
+        replaceFragment(TheJSONObject.toString(), "jsonObject", true);
 
     }
     @Override
@@ -80,17 +82,18 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
 
     }
 
-    public void replaceFragment(String data, String type){
+    public void replaceFragment(String data, String type, Boolean keepbackstack){
 
         FragmentJSONObject newFragment = new FragmentJSONObject();
         Bundle args = new Bundle();
         args.putString(type, data);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.setCustomAnimations(R.anim.enterfromright, FragmentTransaction.TRANSIT_NONE, FragmentTransaction.TRANSIT_NONE, R.anim.exitfromright);
         transaction.replace(R.id.fragment_place, newFragment);
         newFragment.setArguments(args);
-        transaction.addToBackStack(null);
+        if (keepbackstack)transaction.addToBackStack(null);
         transaction.commit();
 
     }

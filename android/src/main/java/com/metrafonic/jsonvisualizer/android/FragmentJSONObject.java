@@ -83,19 +83,15 @@ public class FragmentJSONObject extends Fragment {
                 toBeJSONObject = this.getArguments().getString("jsonObject");
                 text.setText("");
                 JSONObject jsonResponse = null;
-            }
-            if (getArguments() != null) {
-                toBeJSONObject = this.getArguments().getString("jsonObject");
-                text.setText("");
-                JSONObject jsonResponse = null;
                 try {
                     jsonResponse = new JSONObject(toBeJSONObject);
                     Iterator<String> iter = jsonResponse.keys();
-                    text.setText("JSON Object Conent");
+                    text.setText("JSON Object Content");
                     while (iter.hasNext()) {
                         String key = iter.next();
                         View cell = inflater.inflate(R.layout.cell, container, false);
                         TextView cellTitle = (TextView) cell.findViewById(R.id.textView);
+
                         try {
                             Object value = jsonResponse.get(key);
                             if (value instanceof JSONArray) {
@@ -125,8 +121,11 @@ public class FragmentJSONObject extends Fragment {
                             } else {
                                 // It's something else, like a string or number
                                 //TODO: Sort between string and int
-                                value = (String) value;
+
+                                value = value.toString();
+
                                 text.append("\n\nString or number: " + key.toString() + "\n" + value.toString());
+
                                 cellTitle.setText(key.toString());
                                 final Object finalValue = value;
                                 cellTitle.setOnClickListener(new View.OnClickListener() {
@@ -135,10 +134,12 @@ public class FragmentJSONObject extends Fragment {
                                         mListener.onStringClicked((String) finalValue);
                                     }
                                 });
+
                             }
                         } catch (JSONException e) {
                             // Something went wrong!
                         }
+
                         layoutForObjectList.addView(cell);
                     }
                 } catch (JSONException e) {
