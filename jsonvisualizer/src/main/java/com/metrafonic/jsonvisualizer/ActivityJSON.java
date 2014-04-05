@@ -1,4 +1,4 @@
-package com.metrafonic.jsonvisualizer.android;
+package com.metrafonic.jsonvisualizer;
 
 import android.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +7,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -90,11 +92,22 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.setCustomAnimations(R.anim.enterfromright, FragmentTransaction.TRANSIT_NONE, FragmentTransaction.TRANSIT_NONE, R.anim.exitfromright);
+        transaction.setCustomAnimations(R.anim.enterfromright, R.anim.exitfromleft, R.anim.enterfromleft, R.anim.exitfromright);
         transaction.replace(R.id.fragment_place, newFragment);
         newFragment.setArguments(args);
         if (keepbackstack)transaction.addToBackStack(null);
         transaction.commit();
 
+    }
+    public void addToLog(String log){
+        TextView text = (TextView) findViewById(R.id.textView);
+        text.append("\n\n" + log);
+        final ScrollView scrollview = ((ScrollView) findViewById(R.id.scrollView));
+        scrollview.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollview.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        });
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.path="C:\Users\Mathias\Git\JSONVisualizer\android" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="JSONVisualizer" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+<module external.linked.project.path="C:\Users\Mathias\Git\JSON-Visualizer-Android\jsonvisualizer" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="JSON-Visualizer-Android" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":android" />
+        <option name="GRADLE_PROJECT_PATH" value=":jsonvisualizer" />
       </configuration>
     </facet>
     <facet type="android" name="Android">
@@ -71,7 +71,6 @@
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="appcompat-v7-19.0.1" level="project" />
-    <orderEntry type="library" exported="" name="gridlayout-v7-19.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.0.1" level="project" />
   </component>
 </module>

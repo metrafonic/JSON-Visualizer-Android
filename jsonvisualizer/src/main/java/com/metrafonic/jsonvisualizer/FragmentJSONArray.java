@@ -1,4 +1,4 @@
-package com.metrafonic.jsonvisualizer.android;
+package com.metrafonic.jsonvisualizer;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -13,13 +13,13 @@ import android.view.ViewGroup;
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link LoadingFragment.OnFragmentInteractionListener} interface
+ * {@link com.metrafonic.jsonvisualizer.FragmentJSONArray.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link LoadingFragment#newInstance} factory method to
+ * Use the {@link com.metrafonic.jsonvisualizer.FragmentJSONArray#newInstance} factory method to
  * create an instance of this fragment.
  *
  */
-public class LoadingFragment extends Fragment {
+public class FragmentJSONArray extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -37,18 +37,18 @@ public class LoadingFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LoadingFragment.
+     * @return A new instance of fragment FragmentJSONArray.
      */
     // TODO: Rename and change types and number of parameters
-    public static LoadingFragment newInstance(String param1, String param2) {
-        LoadingFragment fragment = new LoadingFragment();
+    public static FragmentJSONArray newInstance(String param1, String param2) {
+        FragmentJSONArray fragment = new FragmentJSONArray();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
-    public LoadingFragment() {
+    public FragmentJSONArray() {
         // Required empty public constructor
     }
 
@@ -65,10 +65,15 @@ public class LoadingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_loading, container, false);
+        return inflater.inflate(R.layout.fragment_jsonarray, container, false);
     }
 
-
+    // TODO: Rename method, update argument and hook method into UI event
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onFragmentInteraction(uri);
+        }
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -99,7 +104,7 @@ public class LoadingFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentLoading();
+        public void onFragmentInteraction(Uri uri);
     }
 
 }

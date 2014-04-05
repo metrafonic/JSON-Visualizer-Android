@@ -1,4 +1,4 @@
-package com.metrafonic.jsonvisualizer.android;
+package com.metrafonic.jsonvisualizer;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;

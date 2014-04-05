@@ -8,7 +8,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 19
         versionCode 1
-        versionName "0.8"
+        versionName "0.9"
     }
     buildTypes {
         release {
@@ -22,14 +22,8 @@ android {
 
     }
 }
-def getDate() {
-    def date = new Date()
-    def formattedDate = date.format('yyyyMMddHHmmss')
-    return formattedDate
-}
+
 dependencies {
-    compile 'com.android.support:gridlayout-v7:19.0.1'
-    compile 'com.android.support:support-v4:19.0.1'
-    compile 'com.android.support:appcompat-v7:19.0.1'
+    compile 'com.android.support:appcompat-v7:19.+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

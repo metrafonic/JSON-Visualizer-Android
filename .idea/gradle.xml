@@ -7,8 +7,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="C:\Users\Mathias\Git\JSONVisualizer" />
-            <option value="C:\Users\Mathias\Git\JSONVisualizer\android" />
+            <option value="C:\Users\Mathias\Git\JSON-Visualizer-Android" />
+            <option value="C:\Users\Mathias\Git\JSON-Visualizer-Android\jsonvisualizer" />
           </set>
         </option>
       </GradleProjectSettings>

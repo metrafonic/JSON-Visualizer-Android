@@ -1,4 +1,4 @@
-package com.metrafonic.jsonvisualizer.android;
+package com.metrafonic.jsonvisualizer;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -21,9 +21,9 @@ import java.util.Iterator;
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link FragmentJSONObject.OnFragmentInteractionListener} interface
+ * {@link com.metrafonic.jsonvisualizer.FragmentJSONObject.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link FragmentJSONObject#newInstance} factory method to
+ * Use the {@link com.metrafonic.jsonvisualizer.FragmentJSONObject#newInstance} factory method to
  * create an instance of this fragment.
  *
  */
@@ -76,31 +76,33 @@ public class FragmentJSONObject extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_jsonobject, container, false);
         if (savedInstanceState==null) {
-            TextView text = (TextView) view.findViewById(R.id.textView);
+
             final LinearLayout layoutForObjectList = (LinearLayout) view.findViewById(R.id.layoutForObjectList);
             String toBeJSONObject;
             if (getArguments() != null) {
                 toBeJSONObject = this.getArguments().getString("jsonObject");
-                text.setText("");
+
                 JSONObject jsonResponse = null;
                 try {
                     jsonResponse = new JSONObject(toBeJSONObject);
                     Iterator<String> iter = jsonResponse.keys();
-                    text.setText("JSON Object Content");
+                    mListener.addToLog("JSON Object Content");
                     while (iter.hasNext()) {
                         String key = iter.next();
                         View cell = inflater.inflate(R.layout.cell, container, false);
                         TextView cellTitle = (TextView) cell.findViewById(R.id.textView);
+                        TextView cellType = (TextView) cell.findViewById(R.id.textView2);
 
                         try {
                             Object value = jsonResponse.get(key);
                             if (value instanceof JSONArray) {
                                 // It's an array
                                 value = (JSONArray) value;
-                                text.append("\n\nArray: " + key.toString() + "\n" + value.toString());
+                                mListener.addToLog("Array: " + key.toString() + "\nContents:" + value.toString());
                                 cellTitle.setText(key.toString());
+                                cellType.setText("(JSON Array)");
                                 final Object finalValue = value;
-                                cellTitle.setOnClickListener(new View.OnClickListener() {
+                                cell.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         mListener.onArrayClicked((JSONArray) finalValue);
@@ -109,10 +111,11 @@ public class FragmentJSONObject extends Fragment {
                             } else if (value instanceof JSONObject) {
                                 // It's an object
                                 value = (JSONObject) value;
-                                text.append("\n\nObject: " + key.toString() + "\n" + value.toString());
+                                mListener.addToLog("Object: " + key.toString() + "\nContents:" + value.toString());
                                 cellTitle.setText(key.toString());
+                                cellType.setText("(JSON Object)");
                                 final Object finalValue = value;
-                                cellTitle.setOnClickListener(new View.OnClickListener() {
+                                cell.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         mListener.onObjectClicked((JSONObject) finalValue);
@@ -123,11 +126,12 @@ public class FragmentJSONObject extends Fragment {
 
                                 value = value.toString();
 
-                                text.append("\n\nString or number: " + key.toString() + "\n" + value.toString());
+                                mListener.addToLog("String or number: " + key.toString() + "\nContents: " + value.toString());
 
                                 cellTitle.setText(key.toString());
+                                cellType.setText("(String or int)");
                                 final Object finalValue = value;
-                                cellTitle.setOnClickListener(new View.OnClickListener() {
+                                cell.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         mListener.onStringClicked((String) finalValue);
@@ -146,7 +150,7 @@ public class FragmentJSONObject extends Fragment {
                 }
             } else {
                 Toast.makeText(getActivity(), "no data", Toast.LENGTH_SHORT).show();
-                text.setText("Failed to get data");
+                mListener.addToLog("Failed to get data");
             }
         }
         return view;
@@ -188,6 +192,7 @@ public class FragmentJSONObject extends Fragment {
         public void onObjectClicked(JSONObject JSONObject);
         public void onStringClicked(String String);
         public void onIntClicked(int Integer);
+        public void addToLog(String log);
     }
 
 }
