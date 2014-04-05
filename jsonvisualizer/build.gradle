@@ -12,10 +12,10 @@ android {
     }
     signingConfigs{
         release {
-            storeFile file(com.metrafonic.jks)
-            storePassword RELEASE_STORE_PASSWORD
+            storeFile file("com.metrafonic.jks")
+            storePassword System.getenv("STORE_PASSWORD")
             keyAlias "jsonvizualizer"
-            keyPassword RELEASE_KEY_PASSWORD
+            keyPassword System.getenv("KEY_PASSWORD")
         }
     }
     buildTypes {
