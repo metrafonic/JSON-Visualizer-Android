@@ -12,10 +12,10 @@ android {
     }
     signingConfigs{
         release {
-            storeFile file(System.getenv("STORE_LOCATION"))
-            storePassword System.getenv("STORE_PASSWORD")
+            storeFile file(com.metrafonic.jks)
+            storePassword RELEASE_STORE_PASSWORD
             keyAlias "jsonvizualizer"
-            keyPassword System.getenv("KEY_PASSWORD")
+            keyPassword RELEASE_KEY_PASSWORD
         }
     }
     buildTypes {
@@ -26,7 +26,7 @@ android {
         }
         applicationVariants.all { variant ->
             def file = variant.outputFile
-            variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionName+ System.getenv("TEST") + ".apk"))
+            variant.outputFile = new File(file.parent, file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk"))
         }
 
     }
