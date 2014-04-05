@@ -84,6 +84,9 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
 
     }
 
+    void poo (){
+
+    }
     public void replaceFragment(String data, String type, Boolean keepbackstack){
 
         FragmentJSONObject newFragment = new FragmentJSONObject();
