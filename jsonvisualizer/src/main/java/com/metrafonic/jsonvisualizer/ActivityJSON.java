@@ -1,6 +1,7 @@
 package com.metrafonic.jsonvisualizer;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
@@ -15,7 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class ActivityJSON extends ActionBarActivity implements LoadingFragment.OnFragmentInteractionListener,FragmentJSONObject.OnFragmentInteractionListener{
+public class ActivityJSON extends ActionBarActivity implements LoadingFragment.OnFragmentInteractionListener,FragmentJSONObject.OnFragmentInteractionListener, FragmentJSONArray.OnFragmentInteractionListener{
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +26,8 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
             setContentView(R.layout.activity_json);
             Bundle b = getIntent().getExtras();
             String jsonString = b.getString("jsonstring");
-            replaceFragment(jsonString, "jsonObject", false);
+            FragmentJSONObject newFragment = new FragmentJSONObject();
+            replaceFragment(jsonString, "jsonObject", false, newFragment, "");
             /*
             FragmentJSONObject newFragment = new FragmentJSONObject();
             Bundle args = new Bundle();
@@ -61,13 +64,16 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
     }
 
     @Override
-    public void onArrayClicked(JSONArray JSONArray){
-        Toast.makeText(this, JSONArray.toString(), Toast.LENGTH_SHORT).show();
+    public void onArrayClicked(JSONArray TheJSONArray, String title){
+        //Toast.makeText(this, TheJSONArray.toString(), Toast.LENGTH_SHORT).show();
+        FragmentJSONArray newFragment = new FragmentJSONArray();
+        replaceFragment(TheJSONArray.toString(), "jsonArray", true, newFragment, title);
     }
     @Override
-    public void onObjectClicked(JSONObject TheJSONObject){
+    public void onObjectClicked(JSONObject TheJSONObject, String title){
         //Toast.makeText(this, TheJSONObject.toString(), Toast.LENGTH_SHORT).show();
-        replaceFragment(TheJSONObject.toString(), "jsonObject", true);
+        FragmentJSONObject newFragment = new FragmentJSONObject();
+        replaceFragment(TheJSONObject.toString(), "jsonObject", true, newFragment, title);
 
     }
     @Override
@@ -87,17 +93,18 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
     void poo (){
 
     }
-    public void replaceFragment(String data, String type, Boolean keepbackstack){
+    public void replaceFragment(String data, String type, Boolean keepbackstack, android.support.v4.app.Fragment frag, String title){
 
-        FragmentJSONObject newFragment = new FragmentJSONObject();
+
         Bundle args = new Bundle();
         args.putString(type, data);
+        args.putString("title", title);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.setCustomAnimations(R.anim.enterfromright, R.anim.exitfromleft, R.anim.enterfromleft, R.anim.exitfromright);
-        transaction.replace(R.id.fragment_place, newFragment);
-        newFragment.setArguments(args);
+        transaction.replace(R.id.fragment_place, frag);
+        frag.setArguments(args);
         if (keepbackstack)transaction.addToBackStack(null);
         transaction.commit();
 
@@ -112,5 +119,10 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
                 scrollview.fullScroll(ScrollView.FOCUS_DOWN);
             }
         });
+    }
+
+    @Override
+    public void updateBack(String title) {
+        getSupportActionBar().setTitle(title);
     }
 }

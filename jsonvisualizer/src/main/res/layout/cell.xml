@@ -18,8 +18,9 @@
             android:text="Small Text"
             android:id="@+id/textView"
             android:padding="10dp"
-            android:textSize="20dp"
-            android:layout_weight="1" />
+            android:textSize="15dp"
+            android:layout_weight="1"
+            android:typeface="monospace" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -30,6 +31,7 @@
             android:layout_weight="1"
             android:gravity="right"
             android:paddingRight="10dp"
-            android:textColor="#828282" />
+            android:textColor="#828282"
+            android:typeface="monospace" />
     </LinearLayout>
 </LinearLayout>

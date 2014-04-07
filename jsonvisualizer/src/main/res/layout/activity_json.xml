@@ -23,7 +23,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@android:color/background_dark">
+        android:background="@android:color/background_dark"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"

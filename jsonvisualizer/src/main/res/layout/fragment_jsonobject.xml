@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#2e517b"
+        android:background="#b1b1b1"
         android:layout_alignParentBottom="true">
 
         <LinearLayout

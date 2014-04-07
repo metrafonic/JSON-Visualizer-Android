@@ -7,7 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -65,15 +71,81 @@ public class FragmentJSONArray extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_jsonarray, container, false);
+        View view = inflater.inflate(R.layout.fragment_jsonarray, container, false);
+
+        String toBeJSONArray = this.getArguments().getString("jsonArray");
+        final String oldtitle = this.getArguments().getString("title");
+        JSONArray jsonResponse = null;
+        final LinearLayout layoutForArrayList = (LinearLayout) view.findViewById(R.id.layoutForArrayList);
+        try{
+            jsonResponse = new JSONArray(toBeJSONArray);
+            for (int i = 0; i< jsonResponse.length(); i++){
+                //Toast.makeText(getActivity(), jsonResponse.get(i).toString(), Toast.LENGTH_SHORT).show();
+                View cell = inflater.inflate(R.layout.cell, container, false);
+                TextView cellTitle = (TextView) cell.findViewById(R.id.textView);
+                TextView cellType = (TextView) cell.findViewById(R.id.textView2);
+                try{
+                    if (jsonResponse.get(i) instanceof JSONArray) {
+                        // It's an array
+                        cellTitle.setText("[" + i + "]");
+                        cellType.setText("(JSON Array)");
+                        final JSONArray finalJsonResponse1 = jsonResponse;
+                        final int finalI1 = i;
+                        cell.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                try {
+                                    mListener.onArrayClicked(finalJsonResponse1.getJSONArray(finalI1), oldtitle + "" + ("["+ finalI1 + "]"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }else if (jsonResponse.get(i) instanceof JSONObject) {
+                        // It's an object
+                        cellTitle.setText("[" + i + "]");
+                        cellType.setText("(JSON Object)");
+                        final JSONArray finalJsonResponse = jsonResponse;
+                        final int finalI = i;
+                        cell.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                try {
+                                    mListener.onObjectClicked(finalJsonResponse.getJSONObject(finalI), oldtitle + "" + ("["+ finalI + "]"));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }else {
+                        cellTitle.setText("[" + i + "]");
+                        cellType.setText("(String or int)");
+                        final JSONArray finalJsonResponse = jsonResponse;
+                        final int finalI = i;
+                        cell.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                try {
+                                    mListener.onStringClicked(finalJsonResponse.getString(finalI));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                }catch (JSONException e) {
+                    // Something went wrong!
+                }
+                layoutForArrayList.addView(cell);
+            }
+        } catch (JSONException e) {
+            // Something went wrong!
+        }
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -84,6 +156,12 @@ public class FragmentJSONArray extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Set title
+        mListener.updateBack(this.getArguments().getString("title"));
     }
 
     @Override
@@ -104,7 +182,12 @@ public class FragmentJSONArray extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onArrayClicked(JSONArray JSONArray, String title);
+        public void onObjectClicked(JSONObject JSONObject, String title);
+        public void onStringClicked(String String);
+        public void onIntClicked(int Integer);
+        public void addToLog(String log);
+        public void updateBack(String title);
     }
 
 }

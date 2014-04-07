@@ -23,11 +23,12 @@ import java.util.Iterator;
  * Activities that contain this fragment must implement the
  * {@link com.metrafonic.jsonvisualizer.FragmentJSONObject.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link com.metrafonic.jsonvisualizer.FragmentJSONObject#newInstance} factory method to
+ * Use the {@link com.metrafonic.jsonvisualizer.FragmentJSONObject} factory method to
  * create an instance of this fragment.
  *
  */
 public class FragmentJSONObject extends Fragment {
+    String titleMain = null;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -39,23 +40,7 @@ public class FragmentJSONObject extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentJSONObject.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentJSONObject newInstance(String param1, String param2) {
-        FragmentJSONObject fragment = new FragmentJSONObject();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
     public FragmentJSONObject() {
         // Required empty public constructor
     }
@@ -81,6 +66,7 @@ public class FragmentJSONObject extends Fragment {
             String toBeJSONObject;
             if (getArguments() != null) {
                 toBeJSONObject = this.getArguments().getString("jsonObject");
+                final String oldtitle = this.getArguments().getString("title");
 
                 JSONObject jsonResponse = null;
                 try {
@@ -88,7 +74,7 @@ public class FragmentJSONObject extends Fragment {
                     Iterator<String> iter = jsonResponse.keys();
                     mListener.addToLog("JSON Object Content");
                     while (iter.hasNext()) {
-                        String key = iter.next();
+                        final String key = iter.next();
                         View cell = inflater.inflate(R.layout.cell, container, false);
                         TextView cellTitle = (TextView) cell.findViewById(R.id.textView);
                         TextView cellType = (TextView) cell.findViewById(R.id.textView2);
@@ -105,7 +91,7 @@ public class FragmentJSONObject extends Fragment {
                                 cell.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        mListener.onArrayClicked((JSONArray) finalValue);
+                                        mListener.onArrayClicked((JSONArray) finalValue, oldtitle + ">" + key.toString() + "");
                                     }
                                 });
                             } else if (value instanceof JSONObject) {
@@ -118,7 +104,7 @@ public class FragmentJSONObject extends Fragment {
                                 cell.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        mListener.onObjectClicked((JSONObject) finalValue);
+                                        mListener.onObjectClicked((JSONObject) finalValue, oldtitle + ">" + key.toString() + "{}");
                                     }
                                 });
                             } else {
@@ -169,6 +155,12 @@ public class FragmentJSONObject extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Set title
+        mListener.updateBack(this.getArguments().getString("title"));
+    }
 
     @Override
     public void onDetach() {
@@ -188,11 +180,12 @@ public class FragmentJSONObject extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onArrayClicked(JSONArray JSONArray);
-        public void onObjectClicked(JSONObject JSONObject);
+        public void onArrayClicked(JSONArray JSONArray, String title);
+        public void onObjectClicked(JSONObject JSONObject, String title);
         public void onStringClicked(String String);
         public void onIntClicked(int Integer);
         public void addToLog(String log);
+        public void updateBack(String title);
     }
 
 }
