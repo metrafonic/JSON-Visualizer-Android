@@ -20,11 +20,24 @@
         android:layout_alignParentEnd="true"
         android:background="#92f1ff" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="fitCenter"
+        android:padding="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -32,6 +45,65 @@
         android:hint="Paste JSON String here..."
         android:gravity="top"
         android:typeface="monospace"
-        android:layout_above="@+id/button" />
+        android:layout_above="@+id/button"
+        android:layout_below="@+id/linearLayout2"
+        android:background="#AAffffff"
+        android:padding="4dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/linearLayout"
+            android:background="@drawable/abc_ab_transparent_dark_holo"
+            android:padding="4dp"
+            android:paddingLeft="10dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="JSON Visualizer"
+                    android:id="@+id/textView"
+                    android:typeface="monospace"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:textSize="25dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="Created by: \nMathias Hedberg - Metrafonic Media"
+                    android:id="@+id/textView2"
+                    android:typeface="monospace"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="http://metrafonic.com/json-visualizer-android/"
+                    android:id="@+id/textView3"
+                    android:gravity="center_horizontal"
+                    android:autoLink="web" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -14,7 +14,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#b1b1b1"
         android:layout_alignParentBottom="true">
 
         <LinearLayout
@@ -25,8 +24,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_above="@+id/scrollView"
-            android:background="@drawable/abc_menu_dropdown_panel_holo_light"></LinearLayout>
+            android:layout_above="@+id/scrollView"></LinearLayout>
     </ScrollView>
 
 </FrameLayout>

@@ -1,6 +1,7 @@
 package com.metrafonic.jsonvisualizer;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class Home extends ActionBarActivity{
@@ -46,7 +48,14 @@ public class Home extends ActionBarActivity{
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_version) {
+            try {
+                String versionName = getApplicationContext().getPackageManager()
+                        .getPackageInfo(getApplicationContext().getPackageName(), 0).versionName;
+                Toast.makeText(this, "Version: " + versionName, Toast.LENGTH_SHORT).show();
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
             return true;
         }
         return super.onOptionsItemSelected(item);
