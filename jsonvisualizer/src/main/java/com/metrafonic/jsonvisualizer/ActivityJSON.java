@@ -21,9 +21,10 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if (savedInstanceState==null) {
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_json);
+        if (savedInstanceState==null) {
             Bundle b = getIntent().getExtras();
             String jsonString = b.getString("jsonstring");
             FragmentJSONObject newFragment = new FragmentJSONObject();

@@ -29,14 +29,6 @@ import java.util.Iterator;
  */
 public class FragmentJSONObject extends Fragment {
     String titleMain = null;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,10 +40,7 @@ public class FragmentJSONObject extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -60,7 +49,7 @@ public class FragmentJSONObject extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_jsonobject, container, false);
-        if (savedInstanceState==null) {
+        if (true) {
 
             final LinearLayout layoutForObjectList = (LinearLayout) view.findViewById(R.id.layoutForObjectList);
             String toBeJSONObject;
@@ -155,6 +144,7 @@ public class FragmentJSONObject extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
     }
+
     @Override
     public void onResume() {
         super.onResume();
