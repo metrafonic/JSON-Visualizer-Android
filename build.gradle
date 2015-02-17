@@ -14,11 +14,13 @@ allprojects {
         mavenCentral()
     }
 }
-signingConfigs {
-    release {
-        storeFile file("com.metrafonic.jks")
-        storePassword System.getenv("KEYSTORE_PASSWORD")
-        keyAlias "jsonvisualizer"
-        keyPassword System.getenv("KEY_PASSWORD")
+android {
+    signingConfigs {
+        release {
+            storeFile file("com.metrafonic.jks")
+            storePassword System.getenv("KEYSTORE_PASSWORD")
+            keyAlias "jsonvisualizer"
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
     }
 }
