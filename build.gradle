@@ -18,7 +18,7 @@ signingConfigs {
     release {
         storeFile file("com.metrafonic.jks")
         storePassword System.getenv("KEYSTORE_PASSWORD")
-        keyAlias System.getenv("KEY_ALIAS")
+        keyAlias "jsonvisualizer"
         keyPassword System.getenv("KEY_PASSWORD")
     }
 }
