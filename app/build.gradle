@@ -31,7 +31,7 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.outputFile = new File(output.outputFile.parentFile,
-                    output.outputFile.name.replace("app", "${name}v${variant.versionName}"));
+                    output.outputFile.name.replace("app-", "jsonvisualizer.${variant.versionName}."));
 
         }
     }
