@@ -1,4 +1,4 @@
-{<3>}![image](/content/images/2014/May/banner.png)
+{<3>}![image](http://metrafonic.com/content/images/2014/May/banner.png)
 
 [![Build Status](http://jenkins.metrafonic.com/job/JSON%20Visualizer%20Development/badge/icon)](http://jenkins.metrafonic.com/job/JSON%20Visualizer%20Development/)
 # What it Does:
