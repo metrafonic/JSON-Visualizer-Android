@@ -11,11 +11,20 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs{
+        release {
+            storeFile file("com.metrafonic.jks")
+            storePassword System.getenv("STORE_PASSWORD")
+            keyAlias "jsonvizualizer"
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
 }
 
