@@ -28,7 +28,7 @@ android {
 
     }
 
-    applicationVariants.each { variant ->
+    applicationVariants.all { variant ->
         variant.outputs.each { output ->
             output.outputFile = new File(
                     output.outputFile.parent,
