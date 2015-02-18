@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/JSON-Visualizer-Android.iml" filepath="$PROJECT_DIR$/JSON-Visualizer-Android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jsonvisualizer/jsonvisualizer.iml" filepath="$PROJECT_DIR$/jsonvisualizer/jsonvisualizer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JSONVisualizer.iml" filepath="$PROJECT_DIR$/JSONVisualizer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

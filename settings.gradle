@@ -1,1 +1,1 @@
-include ':jsonvisualizer'
+include ':app'

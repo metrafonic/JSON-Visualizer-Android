@@ -1,11 +1,8 @@
 package com.metrafonic.jsonvisualizer;
 
-import android.app.Fragment;
-import android.content.Context;
-import android.support.v4.app.FragmentManager;
+import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ScrollView;
