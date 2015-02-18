@@ -5,6 +5,7 @@
 ### Make any JSON file come alive
 Ever wanted to see what was really inside that json string, without actually having to dig in between the layers and layers of text. I decided it was time to create an android app to vizualize the content of any JSON string.
 > The times of digging through piles of text are over!
+
 ## Features:
 * Navigate your way through Jason code
 * View JSON Objects, JSON Arrays, Strings & Integers
