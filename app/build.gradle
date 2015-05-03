@@ -40,4 +40,5 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.2'
+    compile files('/home/mathias/Documents/Android/json-visualizer-android/libs/jsoup-1.8.2.jar')
 }
