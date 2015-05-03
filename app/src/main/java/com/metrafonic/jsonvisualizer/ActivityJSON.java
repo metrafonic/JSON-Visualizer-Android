@@ -1,8 +1,11 @@
 package com.metrafonic.jsonvisualizer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
+import android.text.ClipboardManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ScrollView;
@@ -78,12 +81,23 @@ public class ActivityJSON extends ActionBarActivity implements LoadingFragment.O
 
     }
     @Override
-    public void onStringClicked(String String){
-        Toast.makeText(this, String.toString(), Toast.LENGTH_SHORT).show();
+    public void onStringClicked(final String String){
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Read Update
+        //alertDialog.setTitle("String");
+        alertDialog.setMessage(String);
+
+        alertDialog.setButton("Copy to Clipboard", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                clipboard.setText(String);
+            }
+        });
+
+        alertDialog.show();
     }
     @Override
     public void onIntClicked(int Integer){
-        Toast.makeText(this, Integer + "hi", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Integer + " ", Toast.LENGTH_SHORT).show();
     }
 
     @Override
