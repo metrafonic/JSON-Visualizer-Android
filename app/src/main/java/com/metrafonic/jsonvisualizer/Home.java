@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class Home extends ActionBarActivity{
 
-    private String m_url = "";
+    private String m_url = " ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,6 @@ public class Home extends ActionBarActivity{
             }
         });
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
